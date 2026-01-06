@@ -1,0 +1,31 @@
+<div class="alert mt-4 mx-auto">
+    <h3 class="text-warning">{{ titulo }}</h3>
+    <form class="d-flex justify-content-between align-items-center my-4 w-50 mx-auto">
+        <input type="text" id="descripcion" name="descripcion"
+            placeholder="Descripción Producto" class="form-control me-2 w-75"
+            autocomplete="off"
+            [(ngModel)]="descripcionInput"
+            required/>
+        <input type="number" id="precio" name="precio"
+            placeholder="Precio" class="form-control me-2 w-25"
+            [(ngModel)]="precioInput"
+            required/>
+        <button type="submit" class="btn btn-primary" (click)="guardarProducto()" >{{ productoEditando ? 'Actualizar' : 'Agregar' }}</button>
+    </form>
+    <ul class="list-group w-50 mx-auto">
+        @for (producto of productos; track producto) {
+        <li class="list-group-item text-center">
+            {{producto.descripcion}}
+            ${{producto.precio}}
+            <button class="btn btn-secondary me-2" (click)="editarProducto(producto)">Editar</button>
+            <button class="btn btn-danger" (click)="eliminarProducto(producto)">Eliminar</button>
+        </li>
+        }
+    </ul>
+    
+
+
+</div>
+
+
+

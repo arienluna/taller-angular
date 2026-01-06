@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="mb-3">
+        <label for="inputTexto">Descripción:</label>
+        <br>
+        <input id="inputTexto" type="text" [value]="descripcion"/>
+    </div>
+    <div class="mb-3">
+        <label for="inputTexto">Precio:</label>
+        <br>
+        <input id="inputTexto" type="text" [(ngModel)]="precio"/>
+    </div>
+    <br>
+    <div class="mb-3">
+        <h2>Resumen</h2>
+        <p>Descripción: {{descripcion}}</p>
+        <p>Precio: {{precio}}</p>
+    </div>
+</div>
