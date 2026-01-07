@@ -1,6 +1,7 @@
 <div class="alert mt-4 mx-auto">
     <h3 class="text-warning">{{ titulo }}</h3>
-    <form class="d-flex justify-content-between align-items-center my-4 w-50 mx-auto">
+    <form class="d-flex justify-content-between align-items-center my-4 w-50 mx-auto"
+    #productForm="ngForm" (submit)="guardarProducto($event)">
         <input type="text" id="descripcion" name="descripcion"
             placeholder="Descripción Producto" class="form-control me-2 w-75"
             autocomplete="off"
@@ -10,15 +11,22 @@
             placeholder="Precio" class="form-control me-2 w-25"
             [(ngModel)]="precioInput"
             required/>
-        <button type="submit" class="btn btn-primary" (click)="guardarProducto()" >{{ productoEditando ? 'Actualizar' : 'Agregar' }}</button>
+        <button type="submit" class="btn btn-primary">{{productoEditando?'Actualizar':'Agregar' }}</button>
     </form>
+
+    @if(errorValidacion){
+        <div class="alert alert-danger text-center w-50 mx-auto">
+            <p>{{errorValidacion}}</p>
+        </div>
+    }
+
     <ul class="list-group w-50 mx-auto">
-        @for (producto of productos; track producto) {
+        @for (llave of obtenerLlaves(); track llave) {
         <li class="list-group-item text-center">
-            {{producto.descripcion}}
-            ${{producto.precio}}
-            <button class="btn btn-secondary me-2" (click)="editarProducto(producto)">Editar</button>
-            <button class="btn btn-danger" (click)="eliminarProducto(producto)">Eliminar</button>
+            {{productos[llave].descripcion}}
+            ${{productos[llave].precio}}
+            <button class="btn btn-secondary me-2" (click)="editarProducto(productos[llave],llave)">Editar</button>
+            <button class="btn btn-danger" (click)="eliminarProducto(productos[llave],llave)">Eliminar</button>
         </li>
         }
     </ul>
